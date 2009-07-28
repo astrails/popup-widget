@@ -1,0 +1,23 @@
+== Summary
+
+This library allows creating javascript popup/popin widgets in a simple way.
+
+== Usage
+
+1. Grab the code from github.
+2. Open astrails-widget.js, and change values of hash “opts” to point to your URLs and adjust iframe sizes.
+3. Compress the script with YUI compressor.
+4. Upload compressed script to the location defined in opts.js_url.
+5. Copy-paste a snippet, change the URL of your javascript, and add parameters you need to pass to iframe code:
+
+  <script type='text/javascript'>
+    document.write(unescape("%3Cscript src='" + ("https:" == document.location.protocol ? "https" : "http") + "://assets.astrails.com.s3.amazonaws.com/popup-assests/astrails-widget.js?q=wow' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+
+6. Write the server part refered by opts.iframe_base_url.
+
+7. Give this snippet to your users.
+
+== Copyright
+
+Copyright (c) 2009 Michael Mazyar. See LICENSE for details.
