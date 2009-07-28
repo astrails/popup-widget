@@ -52,6 +52,7 @@
 
 		function bind(el, name, func) {
 			var ee = e(el);
+			if (!ee) return;
 			if (ee.addEventListener) {
 				ee.addEventListener(name, func, null);
 			} 
@@ -138,14 +139,18 @@
 		}
 
 		// appending elements on first run
-		var d = ce("div");
-		d.setAttribute("id", ids.background);
-		document.body.appendChild(d);
-		d.style.cssText = "display:none; padding:0; margin:0; z-index:10000; position:fixed; top:0; left:0; width:100%; height:100%; filter:alpha(opacity=60); -moz-opacity:0.6; -khtml-opacity:0.6; opacity:0.6; background:" + opts.background_color;
+		bind(window, "load", function(){
+			var d = ce("div");
+			d.setAttribute("id", ids.background);
+			document.body.appendChild(d);
+			d.style.cssText = "display:none; padding:0; margin:0; z-index:10000; position:fixed; top:0; left:0; width:100%; height:100%; filter:alpha(opacity=60); -moz-opacity:0.6; -khtml-opacity:0.6; opacity:0.6; background:" + opts.background_color;
+		});
 
 		if (opts.button_image) {
 			document.write("<a style='border:none;text-decoration:none' onclick='return false;' id='" + ids.open + "' href='#'><img src='" + with_protocol(opts.button_image) + "'></a>");
-			bind(ids.open, "click", function(){show_widget(); return false});
+			bind(window, "load", function(){
+				bind(ids.open, "click", function(){show_widget(); return false});
+			});
 		}
 		else {
 			// put manual binding after this line
