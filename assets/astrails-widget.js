@@ -22,7 +22,7 @@
 				top: 50
 			},
 			// without protocol
-			iframe_base_url: "google.com/search"
+			iframe_base_url: "www.google.com"
 		};
 
 		//mini framework
